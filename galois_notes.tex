@@ -399,7 +399,9 @@ Let $L/K$ be a finite field extension. For $a \in L$ we can define $Tr_{L/K}(a) 
 
 \begin{proof} We know that the degree of the minimal polynomial is $|K(\alpha):K|$. Note also that for $P \in K[x]$ we have that $P(\phi_{\alpha}):K(\alpha) \to K(\alpha)$ is the zero map if and only if $P(\alpha) = 0$, thus $\phi_{\alpha}$ has the same minimal polynomial as $\alpha$ over $K$. But $|K(\alpha):K|$ is the dimension of $K(\alpha)$ of $K$, thus the minimal polynomial coincides with the characteristic polynomial.\end{proof}
 
-Thus if $P(x) = \prod_{i=1}^n (X - \alpha_i)$ is the minimal polynomial of $\alpha$, then $$Tr_{K(\alpha):K}(\alpha) = \sum_{i=1}^n \alpha_i$$ and $$N_{K(\alpha):K}(\alpha) = \prod_{i=1}^n a_i.$$
+Thus if $P(x) = \prod_{i=1}^n (X - \alpha_i)$ is the minimal polynomial of $\alpha$, then $$Tr_{K(\alpha):K}(\alpha) = \sum_{i=1}^n \alpha_i$$ and $$N_{K(\alpha):K}(\alpha) = \prod_{i=1}^n \alpha_i.$$
+
+In case $P(x)$ is not separable, the $\alpha_i$ repeat with some multiplicity $q$ and we may write $$P(x) = \prod_{\rho} (X-\rho(\alpha))^q$$ where the product is over all $\rho \in Hom_{K}(K(\alpha): \overline{K})$. Note that $$q = |K(\alpha):K||K(\alpha):K|_s^{-1}.$$ Thus in this case, $$Tr_{K(\alpha)/K} = q \sum_{\rho} \rho(\alpha)$$ and $$N_{K(\alpha)/K}(\alpha) = \left(\prod_{\rho} \rho(\alpha) \right)^q.$$
 
 
 \begin{prop} If $L/K$ is a finite extension and $\alpha$ in $K$, then $$Tr_{L/K}(\alpha) = |L:K(\alpha)| Tr_{K(\alpha)/K} (\alpha)$$ and $$N_{L/K} = \left( N_{K(\alpha)/K}(\alpha) \right)^{|L:K(\alpha)|}.$$
@@ -414,8 +416,8 @@ Thus if $P(x) = \prod_{i=1}^n (X - \alpha_i)$ is the minimal polynomial of $\alp
 
 \begin{proof} For each $\rho \in Hom_{K}(K(\alpha), \overline{K})$, fix an extension $\overline{\rho}:\overline{K} \to \overline{K}$ of $\rho$. Note that each $\sigma \in Hom_{K}(L, \overline{K})$ may be uniquely written by (the proof of) Proposition CITE in the form $\overline{\rho} \circ \tau$ where $\tau \in Hom_{K(\alpha)}(L : \overline{K})$. As such a $\tau$ must fix $\alpha$ we have $(\overline{\rho} \circ \tau) (\alpha) = \rho(\alpha)$ and so we can write 
 
-\begin{align*}Tr_{L/K}(\alpha) &= |L:K(\alpha)| \frac{|L:K(\alpha)|}{|L:K(\alpha)|_s} \sum_{\rho} \rho(\alpha) \\ 
-&= |L:K(\alpha)| \frac{|L:K(\alpha)|}{|L:K(\alpha)|_s} \frac{1}{|L:K(\alpha)|_s} \sum_{\tau} \sum_{\rho} (\overline{\rho} \circ \tau)(\alpha) \\
+\begin{align*}Tr_{L/K}(\alpha) &= |L:K(\alpha)| \frac{|K(\alpha):K|}{|K(\alpha):K|_s} \sum_{\rho} \rho(\alpha) \\ 
+&= |L:K(\alpha)| \frac{|K(\alpha):K|}{|K(\alpha):K|_s} \frac{1}{|L:K(\alpha)|_s} \sum_{\tau} \sum_{\rho} (\overline{\rho} \circ \tau)(\alpha) \\
 &= \frac{|L:K|}{|L:K|_s} \sum_{\sigma} \sigma(\alpha), \end{align*} where a summation over $\sigma$ is over $\sigma \in  Hom_{K}(L, \overline{K})$, a summation over $\tau$ is over $ \tau \in Hom_{K(\alpha)}(L : \overline{K})$ and a summation over $\rho$ is over  $\rho \in Hom_{K}(K(\alpha), \overline{K})$.
 
 The proof for the norm is similair.\end{proof}
