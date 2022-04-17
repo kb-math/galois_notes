@@ -237,7 +237,7 @@ Thus from above, in characteristic zero all algebraic extensions are seperable, 
 
 \begin{proof} For each $\sigma \in Hom_K(L, \overline{K})$ we choose an arbitrary (there are many choices) $\phi(\sigma):\overline{K} \to \overline{K}$ automorphism that extends $\sigma$, where we have used Proposition???. Now we define a mapping $$Hom_K(L, \overline{K}) \times Hom_L(M, \overline{K}) \to Hom_K(M, \overline{K})$$ by $$(\sigma, \tau) \mapsto \phi(\sigma) \circ \tau.$$ Let us first check that it is well defined. If $k \in K$ then $$(\phi(\sigma) \circ \tau) (k) = \phi(\sigma) (\tau(k)) = \phi(\sigma) (k) = \sigma(k) = k,$$ so indeed $\phi(\sigma) \circ \tau$ is a $K$-homomorphism. To show injectivity, suppose that $$\phi(\sigma) \circ \tau = \phi(\sigma') \circ \tau'.$$ Then for any $\ell \in L$ we have that $$\phi(\sigma)(\tau(\ell)) = \phi(\sigma)(\ell) = \sigma(\ell)$$ and by the same arugment $\phi(\sigma')(\tau'(\ell)) = \sigma'(\ell)$. Thus $\sigma = \sigma'$. This means that $\phi(\sigma) = \phi(\sigma')$ and so by injectivity of field automorphisms, we must have that $\tau'(m) = \tau(m)$ for all $m \in M$. So $\tau = \tau'$. It now remains to show injectivity. Thus suppose that $\gamma \in Hom_K(M, \overline{K})$. Let $\sigma$ be the restriction of $\gamma$ to $L$ and observe that $\sigma \in Hom_K(L, \overline{K})$. Now let $$\tau = \phi(\sigma)^{-1} \circ \gamma:M \to \overline{K}.$$ If $\ell \in L$ then $$\tau(\ell) = \phi(\sigma)^{-1}(\gamma(\ell)) = \phi(\sigma)^{-1}(\sigma(\ell)) = \phi(\sigma)^{-1} \phi(\sigma)(\ell) = \ell,$$ thus indeed $\tau \in Hom_L(M, \overline{K})$. This shows that $\gamma = \phi(\sigma) \circ \tau$ is in the image of our map, thus our map is surjective. \end{proof}
 
-\begin{prop} If $K \leq L$ is a finite extension then 
+\begin{prop}\label{prop: seperable degree prime power} If $K \leq L$ is a finite extension then 
 \begin{enumerate}
 	\item If $K$ has characteristic zero then $|L:K| = |L:K|_s$
 	\item If $K$ has characteristic $p$ then $|L:K| = p^r|L:K|_s$ for some integer $r \geq 0$.
@@ -246,7 +246,7 @@ Thus from above, in characteristic zero all algebraic extensions are seperable, 
 
 \begin{proof} By finiteness of this extension $L$ can be obtained from $K$ by finitely many simple extensions, so we only need to prove this when $L = K(\alpha)$ is a simple extension and then use the previous proposition to give the general case by induction. If $Char K = 0$ then we know that $|L:K| = deg f = |L:K|_s$ where $f \in K[x]$ is the minimal polynomial of $\alpha$, where we have used the fact that $f$ is seperable and there is a unique $K$-homomorphism mapping $\alpha$ to any given root of $f$. If $Char K = p$ then $|L:K| = deg f = p^r |L:K|_s$ where $r$ is maximal integer such that $f(x) = g(x^{p^r})$ for some polynomial $g(x) \in K[x]$, as seen in a previously proven result. Thus completing the proof. \end{proof}
 
-\begin{thm} Let $K \geq L$ be a finite extension. The following are equivalent.
+\begin{thm}\label{thm: characterise seperable} Let $K \geq L$ be a finite extension. The following are equivalent.
 
 \begin{enumerate}
 	\item $K \geq L$ is seperable.
@@ -421,5 +421,18 @@ In case $P(x)$ is not separable, the $\alpha_i$ repeat with some multiplicity $q
 &= \frac{|L:K|}{|L:K|_s} \sum_{\sigma} \sigma(\alpha), \end{align*} where a summation over $\sigma$ is over $\sigma \in  Hom_{K}(L, \overline{K})$, a summation over $\tau$ is over $ \tau \in Hom_{K(\alpha)}(L : \overline{K})$ and a summation over $\rho$ is over  $\rho \in Hom_{K}(K(\alpha), \overline{K})$.
 
 The proof for the norm is similair.\end{proof}
+
+Note that as a corollary, we get that if $L/K$ is a finite Galois extension then $$Tr_{L/K}(\alpha) = \sum_{\sigma \in Gal(L/K)} \sigma(\alpha)$$ and  $$N_{L/K}(\alpha) = \prod_{\sigma \in Gal(L/K)} \sigma(\alpha)$$
+\begin{corol} Let $L/K$ be a finite Galois extension, then $$Tr_{L/K} \circ \sigma = Tr{L/K}$$ and $$N_{L/K} \circ \sigma = N_{L/K}.$$
+
+\end{corol}
+
+If $L/K$ is a finite extension, we can define a bilinear form $tr:L \times L \to K$ given by $tr(x,y) = Tr_{L/K}(xy)$. Note that if $L/K$ is finite Galois, then the previous result says that the Galois group preserves this bilinear form.
+
+\begin{prop} Let $L/K$ be a finite extension. Then $L/K$ is seperable if and only if $Tr_{L/K}:L \to K$ is a non-trivial (hence surjective) linear functional. If $L/K$ is seperable, then the bilinear form $tr$ is non-degenerate, i.e., if $x \in L$ is such that $tr(x,y) = 0$ for all $y \in Y$, then $y=0$.
+
+\end{prop}
+
+\begin{proof} If $L/K$ is not seperable, then $q = |L:K||L:K|_s^{-1}$ must be a power of $char K \neq 0$ (see Proposition~\ref{prop: seperable degree prime power} and Theorem~\ref{thm: characterise seperable}). Thus we get that $Tr_{L/K} = q \sum_{\sigma} \sigma$ is identically zero. Now assume $L/K$ is seperable, thus $q = 1$. Now the elements $\sigma \in Hom_K(L, \overline{K})$ are distinct characters (multiplicative maps) $L^* \to \overline{K}^*$, thus linearly independent and so $Tr_{L/K}$ cannot be identitically zero. It now follows immediately that the bilinear form is non-degenerate, for if $x \in L$ with $x \neq 0$ and $tr(xy) = 0$ for all $y \in L$, then as $y$ is a field we have $xL=L$ and so $Tr_{L/K}$ vanishes on $L$, but we have just shown that it does not. \end{proof}
 
 \end{document}
